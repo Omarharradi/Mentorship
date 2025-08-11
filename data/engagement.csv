@@ -1,0 +1,19 @@
+Name,Role,Engagement_Score,Flag,Proactive_Communication,EQ_Score,Last_Activity,Sessions_Attended,Response_Rate
+Aldarazi Ahmad,Mentor,71.42,Green,Yes,75.83,2025-01-20,3,95
+Taj Jamal,Mentor,85.20,Green,Yes,78.45,2025-01-22,5,100
+Amani Alali,Mentor,78.65,Green,Yes,84.72,2025-01-21,4,90
+Ghazi Ibrahim,Mentor,62.30,Yellow,No,82.15,2025-01-18,2,75
+Chemayssani Ali,Mentor,68.45,Green,Yes,76.30,2025-01-19,3,85
+Chedid Elie,Mentor,55.52,Yellow,No,71.00,2025-01-16,4,70
+Charbel Kamal,Mentor,51.38,Red,No,87.00,2025-01-12,0,45
+Rami Khoury,Mentor,45.20,Red,No,79.85,2025-01-10,1,50
+Nadia Saleh,Mentor,58.75,Yellow,No,85.40,2025-01-17,0,60
+Omar Farah,Mentor,72.80,Green,Yes,80.25,2025-01-20,2,88
+Sarah Johnson,Mentee,82.15,Green,Yes,72.40,2025-01-21,3,92
+Michael Chen,Mentee,91.30,Green,Yes,78.20,2025-01-22,5,98
+Lisa Rodriguez,Mentee,75.60,Green,Yes,74.85,2025-01-20,4,87
+David Kim,Mentee,58.40,Yellow,No,69.30,2025-01-18,2,65
+Emma Thompson,Mentee,79.25,Green,Yes,76.15,2025-01-19,3,89
+James Wilson,Mentee,86.70,Green,Yes,81.50,2025-01-21,4,94
+Anna Martinez,Mentee,42.80,Red,No,68.90,2025-01-14,1,55
+Robert Taylor,Mentee,51.20,Yellow,No,71.75,2025-01-16,2,62
