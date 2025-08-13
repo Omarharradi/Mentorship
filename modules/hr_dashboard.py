@@ -117,5 +117,45 @@ def show_hr_dashboard(data):
     for activity in recent_activity:
         icon = {"Goal": "🎯", "Session": "📝", "Alert": "⚠️", "Resource": "📚", "Program": "🚀"}.get(activity["Type"], "📌")
         st.markdown(f"{icon} **{activity['Time']}** - {activity['Activity']}")
-    
 
+    st.markdown("---")
+
+    # Mentor Community Insights
+    st.subheader("🏆 Mentor Community Insights")
+    col1, col2, col3 = st.columns(3)
+
+    returning_mentors = len(data['participation'][data['participation']['Returning_Mentor'] == 'Yes'])
+    total_mentors_community = len(data['participation'])
+    avg_mentees = round(data['participation']['Total_Mentees'].mean(), 1)
+    avg_success_rate = round(data['participation']['Success_Rate'].mean(), 1)
+
+    with col1:
+        st.metric("Returning Mentors", f"{returning_mentors}/{total_mentors_community}", f"{round(returning_mentors/total_mentors_community*100, 1)}%")
+
+    with col2:
+        st.metric("Avg. Mentees per Mentor", f"{avg_mentees}")
+
+    with col3:
+        st.metric("Avg. Mentor Success Rate", f"{avg_success_rate}%")
+
+    st.markdown("---")
+
+    # Participation Overview
+    st.subheader("📊 Mentor Retention by Year")
+    retention_data = data['participation'].copy()
+    retention_data['Years_Count'] = retention_data['Years'].str.count(',') + 1
+    
+    fig_retention = px.histogram(
+        retention_data,
+        x='Years_Count',
+        title="Distribution of Mentor Participation Years",
+        color_discrete_sequence=['#3B82F6']
+    )
+    fig_retention.update_layout(
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        font_color='white',
+        xaxis_title="Number of Years Participated",
+        yaxis_title="Number of Mentors"
+    )
+    st.plotly_chart(fig_retention, use_container_width=True)

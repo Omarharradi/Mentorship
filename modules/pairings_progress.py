@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+from modules.my_mentee import show_my_mentee
 
 def show_pairings_progress(data):
     """Module 2: Mentor-Mentee Pairings & Progress Tracker"""
@@ -110,7 +111,16 @@ def show_pairings_progress(data):
     
     # Select columns for display
     display_columns = ['Mentor', 'Mentee', 'Progress', 'Status', 'Cohort', 'Feedback_Summary', 'Action_Items']
-    st.dataframe(display_df[display_columns], use_container_width=True)
+    st.dataframe(filtered_pairings[['Mentor', 'Mentee', 'Cohort', 'Status', 'Sessions_Completed', 'Total_Sessions', 'completion_rate']], use_container_width=True)
+
+    st.markdown("---")
+    st.subheader("View Mentor's Detailed Progress")
+    
+    mentor_list = ["None"] + sorted(data['pairings']['Mentor'].unique().tolist())
+    selected_mentor_for_detail = st.selectbox("Select a mentor to see their mentee details:", mentor_list)
+
+    if selected_mentor_for_detail != "None":
+        show_my_mentee(data, selected_mentor_for_detail)
     
     # Action items summary
     st.markdown("---")

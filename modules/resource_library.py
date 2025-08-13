@@ -78,43 +78,7 @@ def show_resource_library(data):
     if search_term:
         filtered_resources = filtered_resources[filtered_resources['Document_Name'].str.contains(search_term, case=False, na=False)]
     
-    # Resource analytics
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.subheader("📊 Most Popular Resources")
-        top_resources = data['resources'].nlargest(5, 'Downloads')[['Document_Name', 'Downloads']]
-        fig_popular = px.bar(
-            top_resources,
-            x='Downloads',
-            y='Document_Name',
-            orientation='h',
-            title="Top 5 Most Downloaded Resources",
-            color='Downloads',
-            color_continuous_scale="Blues"
-        )
-        fig_popular.update_layout(
-            plot_bgcolor='rgba(0,0,0,0)',
-            paper_bgcolor='rgba(0,0,0,0)',
-            font_color='white'
-        )
-        st.plotly_chart(fig_popular, use_container_width=True)
-    
-    with col2:
-        st.subheader("📈 Usage by Category")
-        category_usage = data['resources'].groupby('Category')['Downloads'].sum().reset_index()
-        fig_category = px.pie(
-            category_usage,
-            values='Downloads',
-            names='Category',
-            title="Downloads by Category"
-        )
-        fig_category.update_layout(
-            plot_bgcolor='rgba(0,0,0,0)',
-            paper_bgcolor='rgba(0,0,0,0)',
-            font_color='white'
-        )
-        st.plotly_chart(fig_category, use_container_width=True)
+
     
     # Resources table
     st.subheader("📋 Available Resources")

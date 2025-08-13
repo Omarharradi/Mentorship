@@ -174,6 +174,12 @@ def load_data():
 def show_login():
     st.title("🎯 Ivy Leadership & Mentorship Dashboard")
     st.markdown("### *Empowering leadership through connected, data-driven mentorship*")
+
+    _, logo1, logo2, _ = st.columns([1, 1, 1, 1])
+    with logo1:
+        st.image('assets/nesma2.png', width=200)
+    with logo2:
+        st.image('assets/Ivy Logo copy.png', width=200)
     
     st.markdown("---")
     
@@ -236,10 +242,8 @@ def show_sidebar():
                 "📊 HR Dashboard": "hr_dashboard",
                 "🔍 Mentor Eligibility": "mentor_eligibility", 
                 "👥 Pairings & Progress": "pairings_progress",
-                "🎯 SMART Goals": "smart_goals",
                 "📈 Engagement Insights": "engagement_insights",
-                "📚 Resource Library": "resource_library",
-                "🏆 Mentor Community": "mentor_community"
+                "📚 Resource Library": "resource_library"
             }
         else:
             pages = {
