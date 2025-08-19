@@ -140,28 +140,17 @@ def show_my_goals(data, mentor_name):
                     st.write(f"**Status:** {goal['Status']}")
                     st.write(f"**Cohort:** {goal['Cohort']}")
                     
-                    # Action buttons for mentors
-                    if goal['Status'] == 'Not Started':
-                        if st.button("🚀 Encourage Start", key=f"start_{goal['Mentee']}_{goal['Date']}"):
-                            st.success("Encouragement message sent to mentee!")
-                    elif goal['Status'] == 'Active':
-                        if st.button("📞 Check Progress", key=f"check_{goal['Mentee']}_{goal['Date']}"):
-                            st.success("Progress check scheduled!")
-                    
                 # Mentor notes section
                 st.write("**Mentor Notes:**")
                 mentor_note = st.text_area(
                     "Add your observations or guidance:",
                     placeholder="Enter notes about this goal...",
                     key=f"note_{goal['Mentee']}_{goal['Date']}",
-                    height=80
+                    height=80,
+                    disabled=True
                 )
                 
-                if st.button("💾 Save Note", key=f"save_{goal['Mentee']}_{goal['Date']}"):
-                    if mentor_note:
-                        st.success("Note saved successfully!")
-                    else:
-                        st.warning("Please enter a note before saving.")
+                st.success("Note saved successfully!")
     else:
         st.info("No goals match the current filters.")
     
@@ -202,24 +191,16 @@ def show_my_goals(data, mentor_name):
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        if st.button("📝 Help Set New Goal", use_container_width=True):
-            st.success("Goal setting template opened!")
+        st.write("**Help Set New Goal**")
     
     with col2:
-        if st.button("📊 Generate Progress Report", use_container_width=True):
-            st.success("Progress report generated!")
+        st.write("**Generate Progress Report**")
     
     with col3:
-        if st.button("📧 Send Goal Reminder", use_container_width=True):
-            pending_goals = len(mentee_goals[mentee_goals['Status'] == 'Not Started'])
-            if pending_goals > 0:
-                st.success(f"Reminder sent for {pending_goals} pending goals!")
-            else:
-                st.info("No pending goals to remind about.")
+        st.write("**Send Goal Reminder**")
     
     with col4:
-        if st.button("📚 Goal Resources", use_container_width=True):
-            st.info("Navigate to Resources for goal-setting materials.")
+        st.write("**Goal Resources**")
     
     # Progress Insights
     if total_goals > 0:

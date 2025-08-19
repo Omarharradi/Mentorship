@@ -188,35 +188,12 @@ def show_login():
     with col2:
         st.markdown("### 🔐 Login")
         
-        role = st.selectbox(
-            "Select your role:",
-            ["", "HR/Admin", "Mentor"],
-            key="role_selector"
-        )
+        # Only HR/Admin login available
+        st.markdown("**HR/Admin Access**")
         
-        if role == "Mentor":
-            # Load mentor names for selection
-            data = load_data()
-            if data is not None:
-                mentor_names = data['mentors']['Name'].tolist()
-                selected_mentor = st.selectbox(
-                    "Select your name:",
-                    [""] + mentor_names,
-                    key="mentor_selector"
-                )
-                
-                if selected_mentor and st.button("Login", type="primary"):
-                    st.session_state.user_role = "Mentor"
-                    st.session_state.selected_mentor = selected_mentor
-                    st.rerun()
-            else:
-                st.error("Unable to load mentor data")
-                
-        elif role == "HR/Admin":
-            if st.button("Login", type="primary"):
-                st.session_state.user_role = "HR"
-                st.session_state.selected_mentor = None
-                st.rerun()
+        if st.button("Login as HR/Admin", type="primary"):
+            st.session_state.user_role = "HR"
+            st.rerun()
 
 def show_sidebar():
     """Show navigation sidebar"""
@@ -224,42 +201,26 @@ def show_sidebar():
         st.title("🎯 Ivy Dashboard")
         
         # User info
-        if st.session_state.user_role == "HR":
-            st.success("👤 Logged in as: **HR/Admin**")
-        else:
-            st.success(f"👤 Logged in as: **{st.session_state.selected_mentor}**")
+        st.success("👤 Logged in as: **HR/Admin**")
         
-        if st.button("🚪 Logout"):
+        if st.button("🚪 Logout"): 
             st.session_state.user_role = None
-            st.session_state.selected_mentor = None
             st.rerun()
         
         st.markdown("---")
         
-        # Navigation menu
-        if st.session_state.user_role == "HR":
-            pages = {
-                "📊 HR Dashboard": "hr_dashboard",
-                "🔍 Mentor Eligibility": "mentor_eligibility", 
-                "👥 Pairings & Progress": "pairings_progress",
-                "📈 Engagement Insights": "engagement_insights",
-                "📚 Resource Library": "resource_library"
-            }
-        else:
-            pages = {
-                "📊 My Dashboard": "mentor_dashboard",
-                "👥 My Mentee": "my_mentee",
-                "🎯 Goals Tracking": "my_goals",
-                "📈 My Engagement": "my_engagement",
-                "📚 Resources": "resources"
-            }
+        # Navigation menu - HR/Admin only
+        pages = {
+            "📊 HR Dashboard": "hr_dashboard",  
+            "🔍 Mentor Eligibility": "mentor_eligibility", 
+            "👥 Pairings & Progress": "pairings_progress",
+            "📈 Engagement Insights": "engagement_insights",
+            "📚 Resource Library": "resource_library"
+        }
         
         # Initialize selected page in session state if not exists
         if 'selected_page' not in st.session_state:
-            if st.session_state.user_role == "HR":
-                st.session_state.selected_page = "hr_dashboard"
-            else:
-                st.session_state.selected_page = "mentor_dashboard"
+            st.session_state.selected_page = "hr_dashboard"
         
         # Create navigation buttons
         for page_name, page_key in pages.items():
@@ -306,21 +267,6 @@ def main():
     elif selected_page == "mentor_community":
         from modules.mentor_community import show_mentor_community
         show_mentor_community(data)
-
-    elif selected_page == "mentor_dashboard":
-        from modules.mentor_dashboard import show_mentor_dashboard
-        show_mentor_dashboard(data, st.session_state.selected_mentor)
-    elif selected_page == "my_mentee":
-        from modules.my_mentee import show_my_mentee
-        show_my_mentee(data, st.session_state.selected_mentor)
-    elif selected_page == "my_goals":
-        from modules.my_goals import show_my_goals
-        show_my_goals(data, st.session_state.selected_mentor)
-    elif selected_page == "my_engagement":
-        from modules.my_engagement import show_my_engagement
-        show_my_engagement(data, st.session_state.selected_mentor)
-    elif selected_page == "resources":
-        from modules.resources import show_resources
         show_resources(data)
 
 

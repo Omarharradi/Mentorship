@@ -136,15 +136,6 @@ def show_mentor_community(data):
     with col2:
         st.write("**Newsletter Actions:**")
         
-        if st.button("✍️ Create Newsletter Draft", use_container_width=True):
-            st.success("Newsletter draft created with featured mentors!")
-        
-        if st.button("📧 Send to Subscribers", use_container_width=True):
-            st.success("Newsletter sent to 150 subscribers!")
-        
-        if st.button("📊 View Analytics", use_container_width=True):
-            st.info("Newsletter analytics: 85% open rate, 45% click rate")
-    
     # Recognition Program
     st.markdown("---")
     st.subheader("🏅 Recognition Program")
@@ -169,11 +160,7 @@ def show_mentor_community(data):
         """)
     
     with col3:
-        if st.button("🏆 Nominate Mentor", use_container_width=True):
-            st.info("Nomination form opened for mentor recognition.")
-        
-        if st.button("📜 Generate Certificates", use_container_width=True):
-            st.success("Recognition certificates generated!")
+        pass
     
     # Quick Actions
     st.markdown("---")
@@ -182,23 +169,20 @@ def show_mentor_community(data):
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        if st.button("📧 Invite Alumni", use_container_width=True):
-            st.success("Invitation sent to 25 program alumni!")
+        pass
     
     with col2:
-        if st.button("📊 Export Report", use_container_width=True):
-            csv = data['participation'].to_csv(index=False)
-            st.download_button(
-                label="Download CSV",
-                data=csv,
-                file_name="mentor_participation_report.csv",
-                mime="text/csv"
-            )
+        st.write("**Export Report:**")
+        csv = data['participation'].to_csv(index=False)
+        st.download_button(
+            label="Download CSV",
+            data=csv,
+            file_name="mentor_participation_report.csv",
+            mime="text/csv"
+        )
     
     with col3:
-        if st.button("🎉 Plan Appreciation Event", use_container_width=True):
-            st.info("Event planning template opened for mentor appreciation.")
-    
+        pass
+
     with col4:
-        if st.button("📝 Update Bios", use_container_width=True):
-            st.info("Bio update form sent to featured mentors.")
+        pass

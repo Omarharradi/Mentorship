@@ -57,43 +57,26 @@ def show_engagement_insights(data):
     if search_name:
         filtered_engagement = filtered_engagement[filtered_engagement['Name'].str.contains(search_name, case=False, na=False)]
     
-    # Engagement Score Distribution
-    col1, col2 = st.columns(2)
+    # Simple Engagement Overview
+    st.subheader("📊 Engagement Overview")
     
-    with col1:
-        st.subheader("📊 Engagement Score Distribution")
-        fig_hist = px.histogram(
-            filtered_engagement,
-            x='Engagement_Score',
-            color='Flag',
-            title="Distribution of Engagement Scores",
-            color_discrete_map={'Green': '#10B981', 'Yellow': '#F59E0B', 'Red': '#EF4444'}
-        )
-        fig_hist.update_layout(
-            plot_bgcolor='rgba(0,0,0,0)',
-            paper_bgcolor='rgba(0,0,0,0)',
-            font_color='white'
-        )
-        st.plotly_chart(fig_hist, use_container_width=True)
-    
-    with col2:
-        st.subheader("🎯 EQ vs Engagement Correlation")
-        fig_scatter = px.scatter(
-            filtered_engagement,
-            x='EQ_Score',
-            y='Engagement_Score',
-            color='Flag',
-            size='Response_Rate',
-            hover_data=['Name', 'Role'],
-            title="EQ Score vs Engagement Score",
-            color_discrete_map={'Green': '#10B981', 'Yellow': '#F59E0B', 'Red': '#EF4444'}
-        )
-        fig_scatter.update_layout(
-            plot_bgcolor='rgba(0,0,0,0)',
-            paper_bgcolor='rgba(0,0,0,0)',
-            font_color='white'
-        )
-        st.plotly_chart(fig_scatter, use_container_width=True)
+    # Simple bar chart showing engagement by flag
+    flag_counts = filtered_engagement['Flag'].value_counts()
+    fig_simple = px.bar(
+        x=flag_counts.index,
+        y=flag_counts.values,
+        title="Engagement Status Distribution",
+        color=flag_counts.index,
+        color_discrete_map={'Green': '#10B981', 'Yellow': '#F59E0B', 'Red': '#EF4444'}
+    )
+    fig_simple.update_layout(
+        showlegend=False,
+        xaxis_title="Status",
+        yaxis_title="Count",
+        plot_bgcolor='white',
+        paper_bgcolor='white'
+    )
+    st.plotly_chart(fig_simple, use_container_width=True)
     
     # Individual Scorecards
     st.subheader("📋 Individual Engagement Scorecards")
@@ -153,68 +136,26 @@ def show_engagement_insights(data):
         styled_alerts = alert_df.style.applymap(style_alert_level, subset=['Alert'])
         st.dataframe(styled_alerts, use_container_width=True)
         
-        # Quick action buttons for alerts
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            if st.button("📧 Send Alert Notifications", type="primary"):
-                st.success(f"Alert notifications sent to {len(alerts)} participants!")
-        
-        with col2:
-            if st.button("📞 Schedule Interventions", use_container_width=True):
-                critical_alerts = len([a for a in alerts if 'Critical' in a['Alert']])
-                st.success(f"Intervention meetings scheduled for {critical_alerts} critical cases!")
-        
-        with col3:
-            if st.button("📊 Generate Alert Report", use_container_width=True):
-                st.info("Detailed alert report generated and sent to HR team.")
+        # Alert information display only (no action buttons)
+        st.info(f"📋 Total alerts: {len(alerts)} | Critical: {len([a for a in alerts if 'Critical' in a['Alert']])} | Warnings: {len([a for a in alerts if 'Warning' in a['Alert']])}")
     else:
         st.success("🎉 No active alerts! All participants are showing good engagement.")
     
-    # Engagement Trends
+    # Simple Summary Statistics
     st.markdown("---")
-    st.subheader("📈 Engagement Trends Over Time")
+    st.subheader("📈 Summary Statistics")
     
-    # Mock trend data
-    dates = pd.date_range(start='2025-01-01', end='2025-01-22', freq='D')
-    trend_data = []
-    
-    for date in dates:
-        avg_score = avg_engagement + (hash(str(date)) % 20 - 10)  # Mock variation
-        trend_data.append({
-            'Date': date,
-            'Average_Engagement': max(30, min(100, avg_score)),
-            'Green_Count': green_flags + (hash(str(date)) % 4 - 2),
-            'Yellow_Count': yellow_flags + (hash(str(date)) % 3 - 1),
-            'Red_Count': red_flags + (hash(str(date)) % 2)
-        })
-    
-    trend_df = pd.DataFrame(trend_data)
-    
-    fig_trend = px.line(
-        trend_df,
-        x='Date',
-        y='Average_Engagement',
-        title="Average Engagement Score Trend",
-        markers=True
-    )
-    fig_trend.update_layout(
-        plot_bgcolor='rgba(0,0,0,0)',
-        paper_bgcolor='rgba(0,0,0,0)',
-        font_color='white'
-    )
-    fig_trend.update_traces(line_color='#3B82F6', marker_color='#3B82F6')
-    st.plotly_chart(fig_trend, use_container_width=True)
-    
-    # Export functionality
-    col1, col2 = st.columns([1, 3])
+    col1, col2 = st.columns(2)
     
     with col1:
-        if st.button("📥 Export Engagement Report", type="primary"):
-            csv = filtered_engagement.to_csv(index=False)
-            st.download_button(
-                label="Download CSV",
-                data=csv,
-                file_name="engagement_insights_report.csv",
-                mime="text/csv"
-            )
+        st.write("**Average Scores:**")
+        st.write(f"• Engagement: {avg_engagement}")
+        st.write(f"• EQ Score: {filtered_engagement['EQ_Score'].mean():.1f}")
+        st.write(f"• Response Rate: {filtered_engagement['Response_Rate'].mean():.1f}%")
+    
+    with col2:
+        st.write("**Participation:**")
+        st.write(f"• Total Sessions: {filtered_engagement['Sessions_Attended'].sum()}")
+        st.write(f"• Avg Sessions per Person: {filtered_engagement['Sessions_Attended'].mean():.1f}")
+        st.write(f"• Active Communicators: {len(filtered_engagement[filtered_engagement['Proactive_Communication'] == 'Yes'])}")
+

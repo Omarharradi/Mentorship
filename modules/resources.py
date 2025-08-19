@@ -72,11 +72,7 @@ def show_resources(data):
                             st.write(f"**Description:** {descriptions[resource['Document_Name']]}")
                     
                     with col2:
-                        if st.button("📥 Download", key=f"download_gs_{resource['Document_Name']}", use_container_width=True):
-                            st.success("Download started!")
-                        
-                        if st.button("👁️ Preview", key=f"preview_gs_{resource['Document_Name']}", use_container_width=True):
-                            st.info("Preview opened in new tab!")
+                        pass
         else:
             st.info("No Getting Started resources match your current filters.")
     
@@ -103,11 +99,7 @@ def show_resources(data):
                             st.write(f"**Description:** {descriptions[resource['Document_Name']]}")
                     
                     with col2:
-                        if st.button("📥 Download", key=f"download_bp_{resource['Document_Name']}", use_container_width=True):
-                            st.success("Download started!")
-                        
-                        if st.button("👁️ Preview", key=f"preview_bp_{resource['Document_Name']}", use_container_width=True):
-                            st.info("Preview opened in new tab!")
+                        pass
         else:
             st.info("No Best Practices resources match your current filters.")
     
@@ -135,11 +127,7 @@ def show_resources(data):
                             st.write(f"**Description:** {descriptions[resource['Document_Name']]}")
                     
                     with col2:
-                        if st.button("📥 Download", key=f"download_t_{resource['Document_Name']}", use_container_width=True):
-                            st.success("Download started!")
-                        
-                        if st.button("👁️ Preview", key=f"preview_t_{resource['Document_Name']}", use_container_width=True):
-                            st.info("Preview opened in new tab!")
+                        pass
         else:
             st.info("No Templates match your current filters.")
     
@@ -164,8 +152,7 @@ def show_resources(data):
             st.write(f"**{resource['Downloads']}** downloads")
         
         with col4:
-            if st.button("📥", key=f"quick_download_{resource['Document_Name']}", help="Quick Download"):
-                st.success("Downloaded!")
+            pass
     
     # Popular Resources
     st.markdown("---")
@@ -197,20 +184,16 @@ def show_resources(data):
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        if st.button("📧 Request New Resource", use_container_width=True):
-            st.success("Resource request sent to HR team!")
+        pass
     
     with col2:
-        if st.button("⭐ Rate Resources", use_container_width=True):
-            st.info("Resource rating form opened!")
+        pass
     
     with col3:
-        if st.button("💬 Provide Feedback", use_container_width=True):
-            st.success("Feedback form submitted!")
+        pass
     
     with col4:
-        if st.button("📚 Suggest Resource", use_container_width=True):
-            st.info("Resource suggestion form opened!")
+        pass
     
     # Resource Tips
     st.markdown("---")

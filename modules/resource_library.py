@@ -113,9 +113,6 @@ def show_resource_library(data):
                     st.write(f"**Type:** {resource['Type']}")
                     st.write(f"**Size:** {resource['File_Size']}")
                     st.write(f"**Views:** {resource['Views']} | **Downloads:** {resource['Downloads']}")
-                with col2:
-                    if st.button(f"Download", key=f"download_gs_{resource['Document_Name']}"):
-                        st.success("Download started!")
     
     with tab2:
         best_practices = data['resources'][data['resources']['Category'] == 'Best Practices']
@@ -126,9 +123,6 @@ def show_resource_library(data):
                     st.write(f"**Type:** {resource['Type']}")
                     st.write(f"**Size:** {resource['File_Size']}")
                     st.write(f"**Views:** {resource['Views']} | **Downloads:** {resource['Downloads']}")
-                with col2:
-                    if st.button(f"Download", key=f"download_bp_{resource['Document_Name']}"):
-                        st.success("Download started!")
     
     with tab3:
         templates = data['resources'][data['resources']['Category'] == 'Templates']
@@ -139,24 +133,4 @@ def show_resource_library(data):
                     st.write(f"**Type:** {resource['Type']}")
                     st.write(f"**Size:** {resource['File_Size']}")
                     st.write(f"**Views:** {resource['Views']} | **Downloads:** {resource['Downloads']}")
-                with col2:
-                    if st.button(f"Download", key=f"download_t_{resource['Document_Name']}"):
-                        st.success("Download started!")
     
-    # Quick actions
-    st.markdown("---")
-    st.subheader("⚡ Quick Actions")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        if st.button("📊 Generate Usage Report", use_container_width=True):
-            st.success("Usage analytics report generated!")
-    
-    with col2:
-        if st.button("🔍 Search Analytics", use_container_width=True):
-            st.info("Search terms with no results: 'advanced leadership', 'conflict resolution'")
-    
-    with col3:
-        if st.button("📧 Request New Resource", use_container_width=True):
-            st.info("Resource request form sent to HR team.")

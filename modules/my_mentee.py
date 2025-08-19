@@ -144,12 +144,7 @@ def show_my_mentee(data, mentor_name):
                 with col2:
                     st.write(f"**Status:** {goal['Status']}")
                     if goal['Status'] == 'Active':
-                        if st.button(f"Mark Complete", key=f"complete_{goal['SMART_Goal'][:20]}"):
-                            st.success("Goal marked as completed!")
-    else:
-        st.info("No goals set for this mentee yet.")
-        if st.button("➕ Help Set Goals"):
-            st.info("Goal setting template opened.")
+                        pass
     
     # Session Notes and Feedback
     st.subheader("📝 Session Notes & Feedback")
@@ -193,68 +188,7 @@ def show_my_mentee(data, mentor_name):
             
             with col2:
                 st.write(f"**Duration:** {session['Duration']}")
-                if st.button(f"Edit Notes", key=f"edit_{i}"):
-                    st.info("Note editing form opened.")
-    
-    # Quick Actions
-    st.markdown("---")
-    st.subheader("⚡ Quick Actions")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        if st.button("📝 Add Session Notes", use_container_width=True):
-            # Simple note-taking interface
-            with st.expander("Add New Session Note", expanded=True):
-                note_date = st.date_input("Session Date")
-                note_topics = st.text_input("Topics Covered")
-                note_content = st.text_area("Session Notes", height=100)
-                note_actions = st.text_input("Action Items")
-                
-                if st.button("💾 Save Note"):
-                    if note_content:
-                        st.success(f"Session note for {note_date} saved successfully!")
-                    else:
-                        st.warning("Please add session content before saving.")
-    
-    with col2:
-        if st.button("📧 Send Message", use_container_width=True):
-            # Simple messaging interface
-            with st.expander("Send Message to Mentee", expanded=True):
-                message_subject = st.selectbox("Message Type", 
-                    ["Check-in", "Goal Review", "Resource Sharing", "Meeting Reminder", "Other"])
-                message_content = st.text_area("Message Content", height=100,
-                    placeholder="Type your message here...")
-                
-                if st.button("📤 Send Message"):
-                    if message_content:
-                        st.success(f"Message sent to {selected_mentee}!")
-                    else:
-                        st.warning("Please enter a message before sending.")
-    
-    with col3:
-        if st.button("📊 Generate Report", use_container_width=True):
-            # Generate a simple progress report
-            report_data = {
-                'Mentee': [selected_mentee],
-                'Sessions Completed': [current_pairing['Sessions_Completed']],
-                'Progress': [f"{completion_rate:.0f}%"],
-                'Status': [current_pairing['Status']],
-                'Last Action': [current_pairing['Action_Items']]
-            }
-            report_df = pd.DataFrame(report_data)
-            
-            st.success("Progress report generated!")
-            st.dataframe(report_df, use_container_width=True)
-            
-            # Download button for the report
-            csv = report_df.to_csv(index=False)
-            st.download_button(
-                label="📥 Download Report",
-                data=csv,
-                file_name=f"{selected_mentee}_progress_report.csv",
-                mime="text/csv"
-            )
+                pass
     
     # Feedback Summary
     st.markdown("---")
@@ -263,7 +197,7 @@ def show_my_mentee(data, mentor_name):
     st.markdown(f"""
     **Current Status:** {current_pairing['Feedback_Summary']}
     
-    **Next Steps:** {current_pairing['Action_Items']}
+    **Progress Score:** {current_pairing['Progress_Score']}%
     
     **Mentor Notes:** This mentee shows strong potential and is actively engaged in the development process. 
     Regular check-ins and goal tracking are helping maintain momentum.

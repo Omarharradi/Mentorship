@@ -157,13 +157,4 @@ def show_smart_goals(data):
     col1, col2 = st.columns([1, 3])
     
     with col1:
-        if st.button("📥 Export Goals Report", type="primary"):
-            csv = filtered_goals.to_csv(index=False)
-            st.download_button(
-                label="Download CSV",
-                data=csv,
-                file_name="smart_goals_report.csv",
-                mime="text/csv"
-            )
-    
-
+        st.write("Export functionality removed - view only")
