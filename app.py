@@ -13,132 +13,176 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for professional, modern theme
+# Custom CSS for Nesma-inspired orange and white light theme
 st.markdown("""
 <style>
+    /* Force light theme and prevent dark mode */
     .main {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        color: #2d3748;
+        background: linear-gradient(135deg, #ffffff 0%, #fff5f0 100%) !important;
+        color: #2d3748 !important;
     }
     .stApp {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        background: linear-gradient(135deg, #ffffff 0%, #fff5f0 100%) !important;
+        color: #2d3748 !important;
     }
     .css-1d391kg {
-        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        background: linear-gradient(135deg, #ffffff 0%, #fff5f0 100%) !important;
+        color: #2d3748 !important;
+    }
+    [data-testid="stAppViewContainer"] {
+        background: linear-gradient(135deg, #ffffff 0%, #fff5f0 100%) !important;
+    }
+    [data-testid="stHeader"] {
+        background: transparent !important;
     }
     .stSelectbox > div > div {
-        background-color: white;
-        color: #2d3748;
-        border: 2px solid #e2e8f0;
+        background-color: white !important;
+        color: #2d3748 !important;
+        border: 2px solid #fed7aa !important;
         border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 6px rgba(255, 165, 0, 0.1);
     }
     .stMetric {
-        background: white;
+        background: white !important;
         padding: 1.5rem;
         border-radius: 16px;
         margin: 0.5rem 0;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border: 1px solid #fed7aa !important;
+        box-shadow: 0 4px 12px rgba(255, 165, 0, 0.15);
+        color: #2d3748 !important;
     }
     .metric-card {
-        background: white;
+        background: white !important;
         padding: 2rem;
         border-radius: 20px;
         margin: 1rem 0;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e2e8f0;
+        box-shadow: 0 8px 25px rgba(255, 165, 0, 0.15);
+        border: 1px solid #fed7aa !important;
+        color: #2d3748 !important;
     }
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
         background: transparent;
     }
     .stTabs [data-baseweb="tab"] {
-        background: white;
-        color: #4a5568;
+        background: white !important;
+        color: #2d3748 !important;
         border-radius: 12px 12px 0 0;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        border: 1px solid #fed7aa !important;
+        box-shadow: 0 2px 4px rgba(255, 165, 0, 0.1);
     }
     .stTabs [aria-selected="true"] {
-        background: #667eea;
-        color: white;
-        border-color: #667eea;
+        background: #ff6b35 !important;
+        color: white !important;
+        border-color: #ff6b35 !important;
     }
     h1, h2, h3, h4, h5, h6 {
         color: #2d3748 !important;
         font-weight: 700;
     }
     h1 {
-        color: #667eea !important;
+        color: #ff6b35 !important;
     }
     .stDataFrame {
-        background-color: white;
+        background-color: white !important;
         border-radius: 12px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border: 1px solid #fed7aa !important;
+        box-shadow: 0 4px 6px rgba(255, 165, 0, 0.1);
+        color: #2d3748 !important;
     }
     .stSidebar {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(255, 255, 255, 0.98) !important;
         backdrop-filter: blur(10px);
-        border-right: 2px solid #e2e8f0;
+        border-right: 2px solid #fed7aa !important;
+        color: #2d3748 !important;
     }
     .stButton > button {
-        background: #667eea;
-        color: white;
+        background: #ff6b35 !important;
+        color: white !important;
         border: none;
         border-radius: 12px;
         font-weight: 600;
         padding: 0.75rem 1.5rem;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
     }
     .stButton > button:hover {
-        background: #5a67d8;
+        background: #e55a2b !important;
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
     }
     .stExpander {
-        background: white;
+        background: white !important;
         border-radius: 12px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        border: 1px solid #fed7aa !important;
+        box-shadow: 0 2px 8px rgba(255, 165, 0, 0.1);
+        color: #2d3748 !important;
     }
     .stSuccess {
-        background: linear-gradient(90deg, #48bb78, #38a169);
-        color: white;
+        background: linear-gradient(90deg, #48bb78, #38a169) !important;
+        color: white !important;
         border-radius: 12px;
         border: none;
     }
     .stWarning {
-        background: linear-gradient(90deg, #ed8936, #dd6b20);
-        color: white;
+        background: linear-gradient(90deg, #ff6b35, #e55a2b) !important;
+        color: white !important;
         border-radius: 12px;
         border: none;
     }
     .stError {
-        background: linear-gradient(90deg, #f56565, #e53e3e);
-        color: white;
+        background: linear-gradient(90deg, #f56565, #e53e3e) !important;
+        color: white !important;
         border-radius: 12px;
         border: none;
     }
     .stInfo {
-        background: linear-gradient(90deg, #4299e1, #3182ce);
-        color: white;
+        background: linear-gradient(90deg, #ff6b35, #e55a2b) !important;
+        color: white !important;
         border-radius: 12px;
         border: none;
     }
     /* Navigation button styling */
     .stButton > button[kind="secondary"] {
-        background: white;
-        color: #4a5568;
-        border: 2px solid #e2e8f0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        background: white !important;
+        color: #2d3748 !important;
+        border: 2px solid #fed7aa !important;
+        box-shadow: 0 2px 4px rgba(255, 165, 0, 0.1);
     }
     .stButton > button[kind="secondary"]:hover {
-        background: #f7fafc;
-        border-color: #667eea;
-        color: #667eea;
+        background: #fff5f0 !important;
+        border-color: #ff6b35 !important;
+        color: #ff6b35 !important;
+    }
+    /* Additional light theme enforcement */
+    .stMarkdown {
+        color: #2d3748 !important;
+    }
+    .stText {
+        color: #2d3748 !important;
+    }
+    div[data-testid="metric-container"] {
+        background: white !important;
+        color: #2d3748 !important;
+        border: 1px solid #fed7aa !important;
+        border-radius: 12px;
+    }
+    /* Force text inputs to be light */
+    .stTextInput > div > div > input {
+        background-color: white !important;
+        color: #2d3748 !important;
+        border: 1px solid #fed7aa !important;
+    }
+    .stSelectbox > div > div > div {
+        background-color: white !important;
+        color: #2d3748 !important;
+    }
+    /* Ensure all text is dark and readable */
+    * {
+        color: #2d3748 !important;
+    }
+    .stApp > header {
+        background: transparent !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -164,6 +208,7 @@ def load_data():
         data['resources'] = pd.read_csv(f"{data_dir}/resources.csv")
         data['participation'] = pd.read_csv(f"{data_dir}/participation.csv")
         data['leadership_profiles'] = pd.read_csv(f"{data_dir}/leadership_profiles.csv")
+        data['all_participants'] = pd.read_csv(f"{data_dir}/all_participants.csv")
     except FileNotFoundError as e:
         st.error(f"Data file not found: {e}")
         return None
@@ -212,7 +257,7 @@ def show_sidebar():
         # Navigation menu - HR/Admin only
         pages = {
             "📊 HR Dashboard": "hr_dashboard",  
-            "🔍 Mentor Eligibility": "mentor_eligibility", 
+            "👥 All Participants": "mentor_eligibility", 
             "👥 Pairings & Progress": "pairings_progress",
             "📈 Engagement Insights": "engagement_insights",
             "📚 Resource Library": "resource_library"
