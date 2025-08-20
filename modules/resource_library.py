@@ -4,7 +4,7 @@ import plotly.express as px
 
 def show_resource_library(data):
     """Module 5: Live Access to Library"""
-    st.title("📚 Resource Library")
+    st.title("Resource Library")
     st.markdown("### One-stop hub for guides, journey maps, and FAQs")
     
     # Key Metrics
@@ -18,20 +18,12 @@ def show_resource_library(data):
     with col1:
         st.metric("Total Resources", total_resources)
     
-    with col2:
-        st.metric("Total Views", total_views)
-    
-    with col3:
-        st.metric("Total Downloads", total_downloads)
-    
-    with col4:
-        st.metric("Avg Downloads/Resource", avg_usage)
     
     st.markdown("---")
     
     # Upload section (HR only) - Simplified
     if st.session_state.user_role == "HR":
-        st.subheader("📤 Upload New Resource")
+        st.subheader("Upload New Resource")
         
         with st.expander("Upload Resource", expanded=False):
             col1, col2 = st.columns(2)
@@ -44,11 +36,11 @@ def show_resource_library(data):
                 resource_name = st.text_input("Resource Name", placeholder="Enter resource name...")
                 description = st.text_area("Description", height=80, placeholder="Brief description...")
             
-            if st.button("📤 Upload Resource", type="primary"):
+            if st.button("Upload Resource", type="primary"):
                 if uploaded_file and resource_name:
                     # Simulate successful upload
-                    st.success(f"✅ Resource '{resource_name}' uploaded successfully!")
-                    st.info(f"📁 File: {uploaded_file.name} | 📂 Category: {category}")
+                    st.success(f"Resource '{resource_name}' uploaded successfully!")
+                    st.info(f"File: {uploaded_file.name} | Category: {category}")
                 else:
                     st.error("Please select a file and enter a resource name.")
         
@@ -81,7 +73,7 @@ def show_resource_library(data):
 
     
     # Resources table
-    st.subheader("📋 Available Resources")
+    st.subheader("Available Resources")
     
     # Add download buttons
     display_df = filtered_resources.copy()

@@ -6,10 +6,10 @@ from datetime import datetime, timedelta
 
 def show_hr_dashboard(data):
     """HR Dashboard - Comprehensive Program Overview with Filters and Metrics"""
-    st.title("📊 HR Dashboard - Program Overview")
+    st.title("HR Dashboard - Program Overview")
     
     # Recent Activity Section (Top)
-    st.subheader("🔔 Recent Activity")
+    st.subheader("Recent Activity")
     recent_activity = [
         {"Time": "2 hours ago", "Activity": "New mentee Sarah Johnson completed Goal 1", "Type": "Goal"},
         {"Time": "4 hours ago", "Activity": "Mentor Taj Jamal uploaded session notes", "Type": "Session"},
@@ -20,7 +20,7 @@ def show_hr_dashboard(data):
     
     for activity in recent_activity:
         icon = {"Goal": "🎯", "Session": "📝", "Alert": "⚠️", "Resource": "📚", "Program": "🚀"}.get(activity["Type"], "📌")
-        st.markdown(f"{icon} **{activity['Time']}** - {activity['Activity']}")
+        st.markdown(f" **{activity['Time']}** - {activity['Activity']}")
     
     st.markdown("---")
     
@@ -70,7 +70,7 @@ def show_hr_dashboard(data):
         engagement_data = engagement_data[engagement_data['Cohort'] == cohort_num]
     
     # Program Overview (Top Section)
-    st.subheader("📊 Program Overview")
+    st.subheader("Program Overview")
     col1, col2, col3, col4 = st.columns(4)
     
     mentors_count = len(engagement_data[engagement_data['Role'] == 'Mentor'])
@@ -94,7 +94,7 @@ def show_hr_dashboard(data):
         st.metric("Program Completion Rate", f"{completion_rate}%")
     
     # Engagement Metrics (Middle Section)
-    st.subheader("📈 Engagement Metrics")
+    st.subheader("Engagement Metrics")
     col1, col2, col3, col4, col5 = st.columns(5)
     
     # Calculate engagement metrics
@@ -128,7 +128,7 @@ def show_hr_dashboard(data):
     st.markdown("---")
     
     # Satisfaction & Progress (Middle-Lower Section)
-    st.subheader("😊 Satisfaction & Progress")
+    st.subheader("Satisfaction & Progress")
     col1, col2, col3 = st.columns(3)
     
     # Calculate satisfaction metrics
@@ -151,7 +151,7 @@ def show_hr_dashboard(data):
     st.markdown("---")
     
     # Risks & Dropouts (Bottom Section)
-    st.subheader("⚠️ Risks & Dropouts")
+    st.subheader("Risks & Dropouts")
     
     # Calculate risk metrics
     dropped_mentors = len(engagement_data[(engagement_data['Role'] == 'Mentor') & (engagement_data['Engagement_Status'] == 'Dropped')])
@@ -183,7 +183,7 @@ def show_hr_dashboard(data):
         st.metric("Low Coverage Mentors", low_coverage_mentors)
     
     # Risk Details
-    st.subheader("🚨 Risk Details")
+    st.subheader("Risk Details")
     
     # At-risk participants
     at_risk_data = engagement_data[engagement_data['Engagement_Status'] == 'At Risk']
@@ -207,7 +207,7 @@ def show_hr_dashboard(data):
     col1, col2 = st.columns(2)
     
     with col1:
-        st.subheader("📊 Engagement Status Distribution")
+        st.subheader("Engagement Status Distribution")
         engagement_counts = engagement_data['Engagement_Status'].value_counts()
         colors = {'Active': '#10B981', 'At Risk': '#F59E0B', 'Dropped': '#EF4444'}
         fig_engagement = px.pie(
@@ -225,7 +225,7 @@ def show_hr_dashboard(data):
         st.plotly_chart(fig_engagement, use_container_width=True)
     
     with col2:
-        st.subheader("🎯 Goal Progress Distribution")
+        st.subheader("Goal Progress Distribution")
         # Create goal progress bins
         engagement_data_copy = engagement_data.copy()
         engagement_data_copy['Progress_Bin'] = pd.cut(engagement_data_copy['Goal_Progress'], 

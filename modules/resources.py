@@ -60,7 +60,6 @@ def show_resources(data):
                         st.write(f"**Type:** {resource['Type']}")
                         st.write(f"**Size:** {resource['File_Size']}")
                         st.write(f"**Uploaded:** {resource['Upload_Date']}")
-                        st.write(f"**Views:** {resource['Views']} | **Downloads:** {resource['Downloads']}")
                         
                         # Mock description
                         descriptions = {
@@ -87,7 +86,6 @@ def show_resources(data):
                         st.write(f"**Type:** {resource['Type']}")
                         st.write(f"**Size:** {resource['File_Size']}")
                         st.write(f"**Uploaded:** {resource['Upload_Date']}")
-                        st.write(f"**Views:** {resource['Views']} | **Downloads:** {resource['Downloads']}")
                         
                         # Mock description
                         descriptions = {
@@ -114,7 +112,6 @@ def show_resources(data):
                         st.write(f"**Type:** {resource['Type']}")
                         st.write(f"**Size:** {resource['File_Size']}")
                         st.write(f"**Uploaded:** {resource['Upload_Date']}")
-                        st.write(f"**Views:** {resource['Views']} | **Downloads:** {resource['Downloads']}")
                         
                         # Mock description
                         descriptions = {

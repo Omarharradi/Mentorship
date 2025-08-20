@@ -8,7 +8,7 @@ import os
 # Page config
 st.set_page_config(
     page_title="Ivy Leadership & Mentorship Dashboard",
-    page_icon="🎯",
+    page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -238,6 +238,8 @@ def load_data():
         data['all_participants'] = pd.read_csv(f"{data_dir}/all_participants.csv")
         data['enhanced_engagement'] = pd.read_csv(f"{data_dir}/enhanced_engagement.csv")
         data['session_notes'] = pd.read_csv(f"{data_dir}/session_notes.csv")
+        data['mentees_real_data'] = pd.read_csv(f"{data_dir}/mentees_real_data.csv")
+        data['mentors_real_data'] = pd.read_csv(f"{data_dir}/mentors_real_data.csv")
     except FileNotFoundError as e:
         st.error(f"Data file not found: {e}")
         return None
@@ -277,7 +279,7 @@ def show_sidebar():
         # User info
         st.success("👤 Logged in as: **HR/Admin**")
         
-        if st.button("🚪 Logout"): 
+        if st.button("Logout"): 
             st.session_state.user_role = None
             st.rerun()
         
@@ -285,10 +287,10 @@ def show_sidebar():
         
         # Navigation menu - HR/Admin only
         pages = {
-            "📊 HR Dashboard": "hr_dashboard",  
-            "👥 All Participants": "mentor_eligibility", 
-            "📊 Progress Tracker": "progress_tracker",
-            "📚 Resource Library": "resource_library"
+            "HR Dashboard": "hr_dashboard",  
+            "All Participants": "mentor_eligibility", 
+            "Progress Tracker": "progress_tracker",
+            "Resource Library": "resource_library"
         }
         
         # Initialize selected page in session state if not exists
