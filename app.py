@@ -177,6 +177,33 @@ st.markdown("""
         background-color: white !important;
         color: #2d3748 !important;
     }
+    /* Make all tables transparent */
+    .stDataFrame {
+        background-color: transparent !important;
+        border-radius: 12px;
+        border: 1px solid #fed7aa !important;
+        box-shadow: 0 4px 6px rgba(255, 165, 0, 0.1);
+        color: #2d3748 !important;
+    }
+    .stDataFrame > div {
+        background-color: transparent !important;
+    }
+    .stDataFrame table {
+        background-color: transparent !important;
+    }
+    .stDataFrame thead tr th {
+        background-color: rgba(255, 255, 255, 0.8) !important;
+        color: #2d3748 !important;
+        border-bottom: 2px solid #fed7aa !important;
+    }
+    .stDataFrame tbody tr td {
+        background-color: rgba(255, 255, 255, 0.6) !important;
+        color: #2d3748 !important;
+        border-bottom: 1px solid #fed7aa !important;
+    }
+    .stDataFrame tbody tr:nth-child(even) td {
+        background-color: rgba(255, 245, 240, 0.8) !important;
+    }
     /* Ensure all text is dark and readable */
     * {
         color: #2d3748 !important;
@@ -192,7 +219,7 @@ if 'user_role' not in st.session_state:
     st.session_state.user_role = None
 if 'selected_mentor' not in st.session_state:
     st.session_state.selected_mentor = None
-
+ 
 # Load data function
 @st.cache_data
 def load_data():
@@ -209,6 +236,8 @@ def load_data():
         data['participation'] = pd.read_csv(f"{data_dir}/participation.csv")
         data['leadership_profiles'] = pd.read_csv(f"{data_dir}/leadership_profiles.csv")
         data['all_participants'] = pd.read_csv(f"{data_dir}/all_participants.csv")
+        data['enhanced_engagement'] = pd.read_csv(f"{data_dir}/enhanced_engagement.csv")
+        data['session_notes'] = pd.read_csv(f"{data_dir}/session_notes.csv")
     except FileNotFoundError as e:
         st.error(f"Data file not found: {e}")
         return None
@@ -258,8 +287,7 @@ def show_sidebar():
         pages = {
             "📊 HR Dashboard": "hr_dashboard",  
             "👥 All Participants": "mentor_eligibility", 
-            "👥 Pairings & Progress": "pairings_progress",
-            "📈 Engagement Insights": "engagement_insights",
+            "📊 Progress Tracker": "progress_tracker",
             "📚 Resource Library": "resource_library"
         }
         
@@ -297,15 +325,12 @@ def main():
     elif selected_page == "mentor_eligibility":
         from modules.mentor_eligibility import show_mentor_eligibility
         show_mentor_eligibility(data)
-    elif selected_page == "pairings_progress":
-        from modules.pairings_progress import show_pairings_progress
-        show_pairings_progress(data)
+    elif selected_page == "progress_tracker":
+        from modules.progress_tracker import show_progress_tracker
+        show_progress_tracker(data)
     elif selected_page == "smart_goals":
         from modules.smart_goals import show_smart_goals
         show_smart_goals(data)
-    elif selected_page == "engagement_insights":
-        from modules.engagement_insights import show_engagement_insights
-        show_engagement_insights(data)
     elif selected_page == "resource_library":
         from modules.resource_library import show_resource_library
         show_resource_library(data)

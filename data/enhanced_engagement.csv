@@ -1,0 +1,21 @@
+Participant_Name,Role,Cohort,Total_Sessions,Sessions_This_Month,Last_Session_Date,Engagement_Status,Mentor_Satisfaction,Mentee_Satisfaction,Goal_Progress,Dropout_Reason,Risk_Flag
+Aldarazi Ahmad,Mentor,1,24,4,2025-08-15,Active,4.5,4.2,85,,,
+Taj Jamal,Mentor,2,18,3,2025-08-12,Active,4.8,4.6,92,,,
+Charbel Kamal,Mentor,1,12,2,2025-07-20,At Risk,4.2,3.8,65,,No session in 30 days
+Amani Alali,Mentor,3,22,5,2025-08-18,Active,4.7,4.4,88,,,
+Ghazi Ibrahim,Mentor,1,28,6,2025-08-19,Active,4.9,4.7,95,,,
+Chemayssani Ali,Mentor,4,8,1,2025-08-05,At Risk,3.9,3.5,45,,Low coverage
+Chedid Elie,Mentor,2,16,3,2025-08-14,Active,4.3,4.1,78,,,
+Rami Khoury,Mentor,4,6,1,2025-07-25,At Risk,3.7,3.2,35,,No session in 30 days
+Nadia Saleh,Mentor,1,20,4,2025-08-16,Active,4.6,4.3,82,,,
+Omar Farah,Mentor,3,14,2,2025-08-10,Active,4.4,4.0,70,,,
+Sarah Ahmed,Mentee,1,12,2,2025-08-15,Active,,4.5,75,,,
+Mohammed Ali,Mentee,2,8,1,2025-07-28,At Risk,,3.8,40,,No session in 30 days
+Fatima Hassan,Mentee,1,15,3,2025-08-17,Active,,4.6,85,,,
+Ahmed Khalil,Mentee,3,10,2,2025-08-12,Active,,4.2,60,,,
+Layla Mansour,Mentee,2,6,0,2025-07-15,Dropped,,2.5,20,Personal reasons,
+Youssef Omar,Mentee,4,9,2,2025-08-14,Active,,4.3,68,,,
+Maryam Zaid,Mentee,1,11,2,2025-08-11,Active,,4.1,72,,,
+Khalid Nasser,Mentee,3,7,1,2025-08-08,At Risk,,3.6,45,,Goals not updated
+Aisha Qasim,Mentee,2,13,3,2025-08-16,Active,,4.4,80,,,
+Hassan Mahmoud,Mentee,4,5,1,2025-08-06,At Risk,,3.9,35,,Low engagement
